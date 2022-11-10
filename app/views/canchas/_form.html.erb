@@ -1,0 +1,29 @@
+<%= form_with(model: cancha, local: true) do |form| %>
+  <% if cancha.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cancha.errors.count, "error") %> prohibited this cancha from being saved:</h2>
+
+      <ul>
+        <% cancha.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= form.label :aforo %>
+    <%= form.text_field :aforo %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :tipo %>
+    <%= form.text_field :tipo %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

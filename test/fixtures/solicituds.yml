@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  solicitud_id: 1
+  usuario_id: 1
+  cancha_id: 1
+  descripcion: MyText
+  dia_reserva: 2022-10-02
+  hora_reserva: 2022-10-02 16:58:57
+
+two:
+  solicitud_id: 1
+  usuario_id: 1
+  cancha_id: 1
+  descripcion: MyText
+  dia_reserva: 2022-10-02
+  hora_reserva: 2022-10-02 16:58:57

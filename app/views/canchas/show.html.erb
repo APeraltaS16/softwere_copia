@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+
+
+<p>
+  <strong>Aforo:</strong>
+  <%= @cancha.aforo %>
+</p>
+
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @cancha.tipo %>
+</p>
+
+<div>
+<h3>Reviews</h3>
+<% if current_user %>
+  <% link_to "Create Review", new_cancha_review_path(@cancha) %>
+<% end %>
+  <% @cancha.reviews.each do |review| %>
+    <p><%= review.comentario %></p>
+    <p><%= review.calificacion %></p>
+  <% end %>
+</div>
+
+<%= link_to 'Edit', edit_cancha_path(@cancha) %> |
+<%= link_to 'Back', canchas_path %>

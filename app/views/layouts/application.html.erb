@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CanchasFacil</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <!-- Navigation-->
+    <nav class="navbar is-black" role="navigation" aria-label="dropdown navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" style = "position:relative; left:20px; top:0.001px;" href="https://www.google.com/logos/2017/logo17/logo17.html?hl=es-419">
+          <ion-icon size="large" name="car-sport"></ion-icon>
+        </a>
+      </div>
+
+      <div style="border: 5px; width: 300px; padding: 10px; 
+        align-text: center; margin: 5px; text-align: center; color: #198BB9";>
+        <div class="title is-3 has-text-primary">CANCHAS FACIL</div>
+      </div>
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button is-primary is-rounded is-outlined is-right" href='/canchas'>
+              <h4 class="title is-4 has-text-primary"> CANCHAS </h4>
+            </a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <% if current_user %>
+            <div class="buttons">
+              <a class="button is-primary is-rounded is-outlined is-right" href='/solicituds/new'>
+                <h4 class="title is-4 has-text-primary"> Solicitud </h4>
+              </a>
+            </div>
+          <% end %>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable is-black">
+          <div style="border: 5px; width: 150px; padding: 10px;";>
+            <h4 class="title is-3 has-text-primary"><%= link_to "Menu", menu_path %></h4>
+          </div>
+
+          <div class="navbar-dropdown is-center is-boxed">
+            <div class="dropdown-content">
+                <% 
+                  if current_user
+                    @usuario = current_user.id
+                  else 
+                    @usuario = 0
+                  end 
+                %>
+                <% if current_user %>
+                  <div align="center"  class="title is-5 has-text-black is-active"><%= link_to "Cuenta", users_show_path(:id => current_user.id, :tipo_lista => 0) %></div>
+                  <div align="center"  class="title is-5 has-text-black is-active"><%= link_to "Turnos Conductor", turnos_index_path(:tipo => 2, :tipo_lista => 0) %></div>
+                <% end %>
+                <div align="center"  class="title is-5 has-text-black is-active">
+                  <%= link_to(turnos_index_path(:tipo => 1, :tipo_lista => 0)) do %>
+                    Turnos 
+                    <br/>
+                    Pasajero  
+                  <% end %>
+                </div>
+                <% if current_user %>
+                  <div align="center"  class="title is-5 has-text-black is-active"><%= link_to "Solicitudes Recibidas", requests_index_path(:tipo => 1, :tipo_lista => 0) %></div>
+                  <div align="center"  class="title is-5 has-text-black is-active"><%= link_to "Solicitudes Enviadas", requests_index_path(:tipo => 2, :tipo_lista => 0) %></div>
+                <% end %>
+                <div align="center"  class="title is-5 has-text-black is-active"><%= link_to "Chats turnos", mensajes_path(id_turno: 0) %></div>
+              <hr class="dropdown-divider">
+                <% if current_user %>
+                  <div align="center"  class="title is-5 has-text-black is-active has-text-center"><%= link_to destroy_user_session_path,  :method => :delete do %>
+                    Cerrar sesion de
+                    <br/>
+                    <%= current_user.name %>
+                  <% end %>
+                <% else %>
+                  <div align="center"  class="title is-5 has-text-black is-active"><%= link_to "Iniciar Sesion", '/users/sign_in' %></div>
+                  <div align="center"  class="title is-5 has-text-black is-active"><%= link_to "Registrarse", '/users/sign_up' %></div>
+                <% end %>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <!--<a class="navbar-brand" href="#page-top"><img src="app/assets/img/logo.png" alt="..." /></a>
+                <a class="navbar-brand" href="#page-top"><img src="./logo.png" alt="..." /></a>-->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="container">
+                <% if user_signed_in? %>
+              <%= link_to 'Actualizar perfil', edit_user_registration_path %>
+                
+                <%= link_to 'Cerrar sesión', destroy_user_session_path , method: :delete %>
+              <% else %>
+                <%= link_to 'Registrarse', new_user_registration_path %>
+                <%= link_to 'Iniciar sesion', new_user_session_path%>
+              <% end %>
+            </div>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="/canchas">Canchas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/reviews">Reseña</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/solicituds">Solicitudes</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav> 
+    
+
+    <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+    <%= yield %>
+  </body>
+</html>

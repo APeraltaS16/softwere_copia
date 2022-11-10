@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Solicitud:</strong>
+  <%= @solicitud.id %>
+</p>
+
+<p>
+  <strong>Usuario:</strong>
+  <%= current_user.name %>
+</p>
+
+<p>
+  <strong>Cancha:</strong>
+<%#<%= @solicitud.cancha_id %></p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @solicitud.descripcion %>
+</p>
+
+<p>
+  <strong>Dia reserva:</strong>
+  <%= @solicitud.dia_reserva %>
+</p>
+
+<p>
+  <strong>Hora reserva:</strong>
+  <%= @solicitud.hora_reserva %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @solicitud.estado %>
+</p>
+
+<%= link_to 'Edit', edit_solicitud_path(@solicitud) %> |
+<%= link_to 'Back', solicituds_path %>
